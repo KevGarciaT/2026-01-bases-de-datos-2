@@ -30,6 +30,7 @@ CREATE TABLE productos (
     stock_minimo INT NOT NULL DEFAULT 5,
     activo BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+<<<<<<< HEAD
 );
 
 -- insertar datos en "productos"
@@ -271,3 +272,6 @@ WHERE id = 1;
 -- Delete:
 INSERT INTO abonos_clientes (cliente_id, venta_id, fecha, monto)
 VALUES (2, 2, CURDATE(), 30000)
+=======
+);
+>>>>>>> fbd19c9d2b8ffff0d89d48b0c4d32c15adbb66b8

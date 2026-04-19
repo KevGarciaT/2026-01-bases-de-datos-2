@@ -18,7 +18,6 @@ entity "productos" as PRO {
     stock : INT
     stock_minimo : INT
     activo : BOOLEAN
-
 }
 
 entity "clientes" as CLI {
