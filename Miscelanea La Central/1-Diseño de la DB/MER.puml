@@ -1,0 +1,38 @@
+@startuml
+
+entity "categorias" AS CAT {
+    * id : INT <<PK>>
+    --
+    nombre: VARCHAR(100)
+    descripcion: VARCHAR(255)
+}
+
+entity "productos" as PRO {
+    * id : INT <<PK>>
+    --
+    * categoria_id : INT <<FK>>
+    nombre : VARCHAR(150)
+    precio_compra : DECIMAL(10,2)
+    precio_venta_detal : DECIMAL(10,2)
+    precio_venta_mayor : DECIMAL(10,2)
+    stock : INT
+    stock_minimo : INT
+    activo : BOOLEAN
+    fecha_vencimiento: DATE
+}
+
+entity "clientes" as CLI {
+    * id : INT <<PK>>
+    --
+    nombre : VARCHAR(150)
+    telefono : VARCHAR(20)
+    dirección : VARCHAR(255)
+    tipo : ENUM(detal, mayor)
+    credito_habilitado : BOOLEAN
+    limite_credito : DECIMAL(10,2)
+    saldo_deuda : DECIMAL(10,2)
+}
+
+CAT ||--o{ PRO : "clasifica"
+
+@enduml
