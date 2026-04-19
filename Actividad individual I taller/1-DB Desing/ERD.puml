@@ -1,0 +1,77 @@
+@startuml
+' Forced to show all
+show all
+skinparam linetype ortho
+skinparam shadowing false
+
+' "Dark Mode" o "Professional Blue" Style
+skinparam class {
+    BackgroundColor #FFFFFF
+    ArrowColor #333333
+    BorderColor #333333
+    HeaderBackgroundColor #2D3436
+    HeaderFontColor #FFFFFF
+}
+
+entity "Users" as users {
+    + UserID : int [PK]
+    --
+    FirstName : varchar(50)
+    LastName : varchar(50)
+    Email : varchar(100)
+    PhoneNumber : varchar(15)
+}
+
+entity "Staff" as staff {
+    + StaffID : int [PK]
+    --
+    FirstName : varchar(50)
+    LastName : varchar(50)
+    Role : varchar(50)
+    Email : varchar(100)
+}
+
+entity "Books" as books {
+    + BookID : int [PK]
+    --
+    Title : varchar(100)
+    Author : varchar(100)
+    Genre : varchar(50)
+    PublicationYear : int
+    AvailableCopies : int
+    # CategoryID : int [FK]
+}
+
+entity "BookCategories" as categories {
+    + CategoryID : int [PK]
+    --
+    CategoryName : varchar(50)
+    Description : text
+}
+
+entity "Loans" as loans {
+    + LoanID : int [PK]
+    --
+    # UserID : int [FK]
+    # BookID : int [FK]
+    LoanDate : date
+    ReturnDate : date
+}
+
+entity "Reservations" as reservations {
+    + ReservationID : int [PK]
+    --
+    # UserID : int [FK]
+    # BookID : int [FK]
+    ReservationDate : date
+    Status : varchar(20)
+}
+
+' Relationships
+users ||--o{ loans : "borrows"
+books ||--o{ loans : "is loaned"
+users ||--o{ reservations : "makes"
+books ||--o{ reservations : "is reserved"
+categories ||--o{ books : "categorizes"
+
+@enduml
